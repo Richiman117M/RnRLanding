@@ -19,6 +19,7 @@ export class HomeBackgroundComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initScene();
     this.createStars();
+    this.createStars2();
     this.createPlane();
     this.animate();
     this.scene.add(this.ambientLight);
@@ -64,9 +65,24 @@ export class HomeBackgroundComponent implements AfterViewInit {
 
   private createStars(): void {
     const starsGeometry = new THREE.BufferGeometry();
-    const starsMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.2 });
+    const starsMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.3 });
     const starsVertices = [];
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 100000; i++) {
+      const x = (Math.random() - 0.5) * 2000;
+      const y = (Math.random() - 0.5) * 2000;
+      const z = (Math.random() - 0.5) * 2000;
+      starsVertices.push(x, y, z);
+    }
+    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
+    this.stars = new THREE.Points(starsGeometry, starsMaterial);
+    this.scene.add(this.stars);
+  }
+
+  private createStars2(): void {
+    const starsGeometry = new THREE.BufferGeometry();
+    const starsMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.5 });
+    const starsVertices = [];
+    for (let i = 0; i < 1000; i++) {
       const x = (Math.random() - 0.5) * 2000;
       const y = (Math.random() - 0.5) * 2000;
       const z = (Math.random() - 0.5) * 2000;
