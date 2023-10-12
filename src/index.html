@@ -16,3 +16,12 @@
   <app-root></app-root>
 </body>
 </html>
+<script>
+  function loadLocalFallback() {
+    // Load a local fallback stylesheet
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/path/to/local/fallback.css';
+    document.head.appendChild(link);
+  }
+</script>
