@@ -12,6 +12,7 @@ export class HomeBackgroundComponent implements AfterViewInit {
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
   private stars!: THREE.Points;
+  private stars2!: THREE.Points;
   private plane!: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial, THREE.Object3DEventMap>;
   
   private ambientLight = new THREE.AmbientLight(0xffffff);
@@ -83,14 +84,14 @@ export class HomeBackgroundComponent implements AfterViewInit {
     const starsMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.5 });
     const starsVertices = [];
     for (let i = 0; i < 1000; i++) {
-      const x = (Math.random() - 0.5) * 2000;
-      const y = (Math.random() - 0.5) * 2000;
-      const z = (Math.random() - 0.5) * 2000;
+      const x = (Math.random() - 1.5) * 2000;
+      const y = (Math.random() - 1.5) * 2000;
+      const z = (Math.random() - 1.5) * 2000;
       starsVertices.push(x, y, z);
     }
     starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
-    this.stars = new THREE.Points(starsGeometry, starsMaterial);
-    this.scene.add(this.stars);
+    this.stars2 = new THREE.Points(starsGeometry, starsMaterial);
+    this.scene.add(this.stars2);
   }
 
 
@@ -99,6 +100,10 @@ export class HomeBackgroundComponent implements AfterViewInit {
       requestAnimationFrame(animate);
 
       if (this.stars) {
+        this.stars.rotation.x += 0.0003;
+        this.stars.rotation.y += 0.0003;
+      }
+      if (this.stars2) {
         this.stars.rotation.x += 0.0003;
         this.stars.rotation.y += 0.0003;
       }
