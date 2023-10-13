@@ -1,10 +1,22 @@
+/* home-background.component.css */
+
+#scene-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Fondo, detrás de otros elementos */
+}
+
+
+
 .home-content {
   margin: 0;
   padding: 0;
 }
 
 :host {
-  display: block;
   position: relative;
   width: 100%; /* O ajusta el ancho según tus necesidades */
   height: 50vh; /* El 100% de la altura de la ventana */
@@ -28,5 +40,5 @@
   background-position: center; /* Centra la imagen en el contenedor */
   background-repeat: no-repeat;
   filter: brightness(0.5); /* Ajusta el brillo según sea necesario */
-  z-index: 0; /* Coloca la imagen detrás del contenido */
+  z-index: -1; /* Coloca la imagen detrás del contenido */
 }

@@ -1,15 +1,22 @@
+<!-- header.component.html -->
+
 <header>
+  <div class="burger-menu" (click)="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
   <div class="spacer"></div>
   <div class="logo">
     <img class="logo" src="assets/images/logo.png" alt="R&R Software">
-  <p class="subTitulo">Quality Software</p>
+    <p class="subTitulo">Quality Software</p>
   </div>
   <div class="spacer"></div>
-  <div class="menu">
-    <a routerLink="/inicio">Inicio</a>
-    <a routerLink="/servicios">Servicios</a>
-    <a routerLink="/portafolio">Portafolio</a>
-    <a routerLink="/contacto">Contacto</a>
+  <div class="menu" [class.open]="isMenuOpen">
+    <a routerLink="/inicio" (click)="closeMenu()">Inicio</a>
+    <a routerLink="/servicios" (click)="closeMenu()">Servicios</a>
+    <a routerLink="/portafolio" (click)="closeMenu()">Portafolio</a>
+    <a routerLink="/contacto" (click)="closeMenu()">Contacto</a>
   </div>
   <div class="spacer"></div>
 </header>

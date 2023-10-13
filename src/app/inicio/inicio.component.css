@@ -7,19 +7,17 @@
 
 .service-section {
     text-align: center;
-    padding: 50px;
-    background-color: #fff;
     margin-bottom: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
+    border-radius: 1px;
 }
 
 .banner {
-    background-color: #000000;
-    color: white;
+    background-color: #ffffff;
+    color: black;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  
 }
 
 .service-details {
@@ -50,7 +48,6 @@
 .service-section {
     text-align: center;
     padding: 50px;
-    background-color: #fff;
     margin-bottom: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;

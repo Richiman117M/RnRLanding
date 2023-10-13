@@ -13,17 +13,14 @@ export class HomeBackgroundComponent implements AfterViewInit {
   private renderer!: THREE.WebGLRenderer;
   private stars!: THREE.Points;
   private stars2!: THREE.Points;
-  private plane!: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial, THREE.Object3DEventMap>;
-  
-  private ambientLight = new THREE.AmbientLight(0xffffff);
-  
+  private ambientLight = new THREE.AmbientLight(0xf00);
+  private ufo!: THREE.Mesh<THREE.CylinderGeometry, THREE.MeshBasicMaterial>;
   ngAfterViewInit(): void {
     this.initScene();
     this.createStars();
     this.createStars2();
-    this.createPlane();
-    this.animate();
     this.scene.add(this.ambientLight);
+    this.animate();
   }
 
   private initScene(): void {
@@ -32,37 +29,11 @@ export class HomeBackgroundComponent implements AfterViewInit {
     this.camera.position.z = 5;
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-
     const container = document.getElementById('scene-container');
     if (container) {
       container.appendChild(this.renderer.domElement);
     }
   }
-
-
-  private createPlane(): void {
-    const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('/assets/images/logo3.png', (texture) => {
-      texture.format = THREE.RGBAFormat;
-      texture.needsUpdate = true;
-    });
-   
-    const material = new THREE.MeshBasicMaterial({
-      map: texture,
-      transparent: true,
-      alphaTest: 0.9,
-      blending: THREE.NormalBlending,
-      side: THREE.DoubleSide,
-    });
-    const geometry = new THREE.PlaneGeometry(1.4, 1.2);
-  
-
-    this.plane = new THREE.Mesh(geometry, material);
-    this.plane.position.x = -4;
-    this.plane.position.y = 2;
-    this.scene.add(this.plane);
-  }
-
 
   private createStars(): void {
     const starsGeometry = new THREE.BufferGeometry();
@@ -94,28 +65,17 @@ export class HomeBackgroundComponent implements AfterViewInit {
     this.scene.add(this.stars2);
   }
 
-
+ 
   private animate(): void {
     const animate = () => {
       requestAnimationFrame(animate);
-
-      if (this.stars) {
-        this.stars.rotation.x += 0.0003;
+      if (this.stars && this.stars2) {
         this.stars.rotation.y += 0.0003;
+        this.stars2.rotation.y += 0.0003;
       }
-      if (this.stars2) {
-        this.stars.rotation.x += 0.0003;
-        this.stars.rotation.y += 0.0003;
-      }
-
-      if(this.plane){
-        this.plane.rotation.y += 0.003;
-        
-      }
-
       this.renderer.render(this.scene, this.camera);
     };
 
-    animate();
+    animate(); 
   }
 }
